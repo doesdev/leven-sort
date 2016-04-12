@@ -56,6 +56,6 @@ const nameObjAry = [
   { first: 'Billy', last: 'Griffith' }
 ]
 
-let levSorted = levenSort(nameAry, sourceFirst, 'first', sourceLast, 'last')
+let levSorted = levenSort(nameObjAry, sourceFirst, 'first', sourceLast, 'last')
 
 ```
