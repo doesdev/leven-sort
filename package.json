@@ -1,6 +1,6 @@
 {
   "name": "leven-sort",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simply sort by similarity, starring Levenshtein via leven",
   "keywords": [
     "sort",

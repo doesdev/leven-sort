@@ -1,3 +1,5 @@
+'use strict'
+
 // Setup
 const leven = require('leven')
 
