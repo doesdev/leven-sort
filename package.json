@@ -1,0 +1,49 @@
+{
+  "name": "leven-sort",
+  "version": "1.0.0",
+  "description": "Simply sort by similarity, starring Levenshtein via leven",
+  "keywords": [
+    "sort",
+    "leven",
+    "levenshtein",
+    "distance",
+    "algorithm",
+    "algo",
+    "string",
+    "difference",
+    "diff",
+    "fast",
+    "fuzzy",
+    "similar",
+    "similarity",
+    "compare",
+    "comparison",
+    "edit",
+    "text",
+    "match",
+    "matching",
+    "sort",
+    "order",
+    "objects",
+    "arrays"
+  ],
+  "files": ["index.js"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/musocrat/leven-sort"
+  },
+  "homepage": "https://github.com/musocrat/leven-sort",
+  "author": "Andrew Carpenter <andrew@musocrat.com> (https://github.com/musocrat)",
+  "bugs": {
+    "email": "andrew@musocrat.com",
+    "url": "https://github.com/musocrat/leven-sort/issues"
+  },
+  "main": "index.js",
+  "scripts": {},
+  "author": "Andrew Carpenter",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "leven": "^2.0.0"
+  }
+}
