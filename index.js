@@ -4,8 +4,8 @@
 const leven = require('leven')
 
 // Export main function
-module.exports = (ary, src1, key1, src2, key2) => {
-  return ary.sort((a, b) => {
+module.exports = function (ary, src1, key1, src2, key2) {
+  return ary.sort(function (a, b) {
     if (!key1 && !key2) return leven(src1, a) < leven(src1, b) ? -1 : 1
     if (!key2) return leven(src1, a[key1]) < leven(src1, b[key1]) ? -1 : 1
     let score = 0

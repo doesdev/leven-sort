@@ -2,7 +2,7 @@
 
 Simply sort by similarity, starring Levenshtein via [leven](https://github.com/sindresorhus/leven).
 
-Allows sorting of an array of strings or array of objects. For arrays of objects
+Allows sorting of an array of strings or array of objects by similarity. For arrays of objects
 you can sort by up to two keys.
 
 ## install
@@ -10,12 +10,13 @@ you can sort by up to two keys.
 
 ## api
 
-leven-sort only exports one function that takes the followings arguments:   
-`arrayToSort`: Your array object (will be sorted in place as it uses Array.sort)   
+**leven-sort** only exports one function that takes the followings arguments:
+
+`arrayToSort`: Your array object (will be sorted in place as it uses Array.prototype.sort)   
 `sourceText`: The text to check similarity of   
-`key1 (optional)`: For array of objects, this is the property of each object to be compared   
-`sourceText2 (optional)`: If performing a secondary sort, this is the text to check key2 by   
-`key2 (optional)`: For secondary sort on object, this is the second property to check   
+`key1` *(optional)*: For array of objects, this is the property of each object to be compared   
+`sourceText2` *(optional)*: If performing a secondary sort, this is the text to check key2 by   
+`key2` *(optional)*: For secondary sort on object, this is the second property to check   
 
 ## usage
 
