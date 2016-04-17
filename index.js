@@ -8,8 +8,11 @@ module.exports = function (ary, src1, key1, src2, key2) {
       var min = 1000
       var len = array.length
       for (var counter = 0; counter < len; counter++) {
-        var levScore = leven(src1, array[counter])
-        if (levScore < min) min = levScore
+        var val = array[counter]
+        if (val && val.length && val.length > 0) {
+          var levScore = leven(src1, array[counter])
+          if (levScore < min) min = levScore
+        }
       }
       return min
     }
