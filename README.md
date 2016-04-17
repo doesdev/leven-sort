@@ -10,17 +10,27 @@ you can sort by up to two keys.
 
 ## api
 
-**leven-sort** only exports one function that takes the followings arguments:
+**leven-sort** only exports one function, but it has 3 distinct signatures
 
-`arrayToSort`: Your array object (will be sorted in place as it uses Array.prototype.sort)   
-`sourceText`: The text to check similarity of   
-`key1` *(optional)*: For array of objects, this is the property of each object to be compared   
-`sourceText2` *(optional)*: If performing a secondary sort, this is the text to check key2 by   
+1. Sort simple text array  
+`arrayToSort`: Array to sort (sorted in place)   
+`sourceText`: The text to check similarity of
+
+2. Sort array of objects, with optional secondary sort
+`arrayToSort`: Array to sort (sorted in place)   
+`sourceText1`: The text to check similarity of   
+`key1`: Property name to be compared in each object   
+`sourceText2` *(optional)*: If performing a secondary sort, this is the text to check key2 by  
 `key2` *(optional)*: For secondary sort on object, this is the second property to check   
+
+3. Sort array of objects by multiple keys, each by the same source and with equal weight  
+`arrayToSort`: Array to sort (sorted in place)   
+`sourceText`: The text to check similarity of   
+`arrayOfKeys`: Array of property names to compare    
 
 ## usage
 
-Basic Example (sort simple text array)
+Sort simple text array
 ```javascript
 const levenSort = require('leven-sort')
 const sourceName = 'Bill Griffin'
@@ -39,7 +49,7 @@ const nameAry = [
 let levSorted = levenSort(nameAry, sourceName)
 ```
 
-Advanced Example (sort array of objects by up to two keys)
+Sort array of objects, with secondary sort
 ```javascript
 const levenSort = require('leven-sort')
 const sourceFirst = 'Bill'
@@ -58,5 +68,26 @@ const nameObjAry = [
 ]
 
 let levSorted = levenSort(nameObjAry, sourceFirst, 'first', sourceLast, 'last')
+
+```
+
+Sort array of objects by multiple keys
+```javascript
+const levenSort = require('leven-sort')
+const source = 'Bill'
+const nameObjAry = [
+  { first: 'Carl', last: 'Martinez' },
+  { first: 'Roger', last: 'Davis' },
+  { first: 'William', last: 'George' },
+  { first: 'Andrew', last: 'Torres' },
+  { first: 'Billy', last: 'Campbell' },
+  { first: 'Alan', last: 'King' },
+  { first: 'Benjamin', last: 'Wilson' },
+  { first: 'Bill', last: 'Griffin' },
+  { first: 'Dennis', last: 'Smith' },
+  { first: 'Billy', last: 'Griffith' }
+]
+
+let levSorted = levenSort(nameObjAry, source, ['first', 'last'])
 
 ```
