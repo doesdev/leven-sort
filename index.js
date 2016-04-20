@@ -1,28 +1,28 @@
 // Setup
 var leven = require('leven')
 
+// Helpers
+var levMinInAry = function (array, src) {
+  var min = 1000
+  var len = array.length
+  for (var counter = 0; counter < len; counter++) {
+    var val = array[counter]
+    if (val && val.length && val.length > 0) {
+      var levScore = leven(src, array[counter])
+      if (levScore < min) min = levScore
+    }
+  }
+  return min
+}
+
 // Export main function
 module.exports = function (ary, src1, key1, src2, key2) {
-  if (key1 instanceof Array) {
-    var levMinInAry = function (array) {
-      var min = 1000
-      var len = array.length
-      for (var counter = 0; counter < len; counter++) {
-        var val = array[counter]
-        if (val && val.length && val.length > 0) {
-          var levScore = leven(src1, array[counter])
-          if (levScore < min) min = levScore
-        }
-      }
-      return min
-    }
-    return ary.sort(function (a, b) {
-      var aLev = levMinInAry(key1.map(function (k) { return a[k] }))
-      var bLev = levMinInAry(key1.map(function (k) { return b[k] }))
-      return aLev - bLev
-    })
-  }
   return ary.sort(function (a, b) {
+    if (key1 instanceof Array) {
+      var aLev = levMinInAry(key1.map(function (k) { return a[k] }), src1)
+      var bLev = levMinInAry(key1.map(function (k) { return b[k] }), src1)
+      return aLev - bLev
+    }
     if (!key1 && !key2) return leven(src1, a) < leven(src1, b) ? -1 : 1
     if (!key2) return leven(src1, a[key1]) < leven(src1, b[key1]) ? -1 : 1
     var score = 0
