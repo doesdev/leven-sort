@@ -1,4 +1,4 @@
-# leven-sort   [![npm version](https://badge.fury.io/js/leven-sort.svg)](http://badge.fury.io/js/leven-sort)   [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
+# leven-sort   [![npm version](https://badge.fury.io/js/leven-sort.svg)](http://badge.fury.io/js/leven-sort)   [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)   [![Dependency Status](https://dependencyci.com/github/doesdev/leven-sort/badge)](https://dependencyci.com/github/doesdev/leven-sort)
 
 Simply sort by similarity, starring Levenshtein via [leven](https://github.com/sindresorhus/leven).
 
