@@ -1,6 +1,30 @@
 'use strict'
 
-var leven = require('leven')
+var levenSrc = require('leven')
+
+var maxDist = function (a, b, c) {
+  var aLen = (a || '').length
+  var bLen = (b || '').length
+
+  return (aLen > bLen ? aLen : bLen) || 1
+}
+
+var leven = function (a, b) {
+  if (a === b) return 0
+  if (!a || !b) return maxDist(a, b)
+
+  return levenSrc(a, b)
+}
+
+var levSort = function (src, a, b) {
+  if (!a) return 1
+  if (!b) return -1
+
+  a = leven(src, a)
+  b = leven(src, b)
+
+  return a - b
+}
 
 var levMinInAry = function (array, src) {
   var min = 1000
@@ -19,7 +43,7 @@ var levMinInAry = function (array, src) {
 }
 
 module.exports = function (ary, src1, key1, src2, key2) {
-  return ary.sort(function (a, b) {
+  var sorted = ary.sort(function (a, b) {
     if (key1 instanceof Array) {
       var aLev = levMinInAry(key1.map(function (k) { return a[k] }), src1)
       var bLev = levMinInAry(key1.map(function (k) { return b[k] }), src1)
@@ -27,21 +51,14 @@ module.exports = function (ary, src1, key1, src2, key2) {
       return aLev - bLev
     }
 
-    if (!key1 && !key2) return leven(src1, a) < leven(src1, b) ? -1 : 1
+    if (!key1 && !key2) return levSort(src1, a, b)
 
-    if (!key2) return leven(src1, a[key1]) < leven(src1, b[key1]) ? -1 : 1
+    if (!key2) return levSort(src1, a[key1], b[key1])
 
-    var score = 0
-    var a1 = leven(src1, a[key1])
-    var b1 = leven(src1, b[key1])
-    var a2 = leven(src2, a[key2])
-    var b2 = leven(src2, b[key2])
+    var score = levSort(src1, a[key1], b[key1]) * 10
 
-    if (a1 < b1) score = score - 10
-    if (a1 > b1) score = score + 10
-    if (a2 < b2) score = score - 1
-    if (a2 > b2) score = score + 1
-
-    return score
+    return score + levSort(src2, a[key2], b[key2])
   })
+
+  return sorted
 }

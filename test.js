@@ -11,6 +11,7 @@ runTests('Testing leven-sort', () => {
       'Carl Martinez',
       'Roger Davis',
       'William George',
+      null,
       'Andrew Torres',
       'Billy Campbell',
       'Alan King',
@@ -28,9 +29,10 @@ runTests('Testing leven-sort', () => {
       'William George',
       'Carl Martinez',
       'Roger Davis',
-      'Dennis Smith',
       'Benjamin Wilson',
-      'Andrew Torres'
+      'Dennis Smith',
+      'Andrew Torres',
+      null
     ]
 
     const levSorted = levenSort(nameAry, sourceName)
@@ -48,6 +50,7 @@ runTests('Testing leven-sort', () => {
       { first: 'William', last: 'George' },
       { first: 'Andrew', last: 'Torres' },
       { first: 'Billy', last: 'Campbell' },
+      { first: null, last: null },
       { first: 'Alan', last: 'King' },
       { first: 'Benjamin', last: 'Wilson' },
       { first: 'Bill', last: 'Griffin' },
@@ -60,12 +63,13 @@ runTests('Testing leven-sort', () => {
       { first: 'Billy', last: 'Griffith' },
       { first: 'Billy', last: 'Campbell' },
       { first: 'Carl', last: 'Martinez' },
-      { first: 'William', last: 'George' },
       { first: 'Alan', last: 'King' },
+      { first: 'William', last: 'George' },
       { first: 'Roger', last: 'Davis' },
       { first: 'Dennis', last: 'Smith' },
       { first: 'Andrew', last: 'Torres' },
-      { first: 'Benjamin', last: 'Wilson' }
+      { first: 'Benjamin', last: 'Wilson' },
+      { first: null, last: null }
     ]
 
     const levSorted = levenSort(nameObjAry, sourceFirst, 'first', sourceLast, 'last')
@@ -83,6 +87,7 @@ runTests('Testing leven-sort', () => {
       { first: 'Andrew', last: 'Torres' },
       { first: 'Billy', last: 'Campbell' },
       { first: 'Alan', last: 'King' },
+      { first: null, last: null },
       { first: 'Benjamin', last: 'Wilson' },
       { first: 'Bill', last: 'Griffin' },
       { first: 'Dennis', last: 'Smith' },
@@ -91,15 +96,16 @@ runTests('Testing leven-sort', () => {
 
     const expect = [
       { first: 'Bill', last: 'Griffin' },
-      { first: 'Billy', last: 'Campbell' },
       { first: 'Billy', last: 'Griffith' },
+      { first: 'Billy', last: 'Campbell' },
       { first: 'Carl', last: 'Martinez' },
       { first: 'Alan', last: 'King' },
-      { first: 'William', last: 'George' },
       { first: 'Benjamin', last: 'Wilson' },
+      { first: 'William', last: 'George' },
       { first: 'Dennis', last: 'Smith' },
       { first: 'Roger', last: 'Davis' },
-      { first: 'Andrew', last: 'Torres' }
+      { first: 'Andrew', last: 'Torres' },
+      { first: null, last: null }
     ]
 
     const levSorted = levenSort(nameObjAry, source, ['first', 'last'])
