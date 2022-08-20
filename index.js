@@ -1,10 +1,10 @@
-'use strict'
+import levenSrc from 'leven'
 
-var levenSrc = require('leven')
-var bufChar = String.fromCharCode(2000)
+const bufChar = String.fromCharCode(2000)
 
-module.exports = function (ary, src1, key1, src2, key2) {
-  var max = 0
+export default (ary, src1, key1, src2, key2) => {
+  let max = 0
+
   ary.forEach(function (el) {
     if (!el) return
     if (!key1 && !key2 && el.length > max) max = el.length
@@ -19,19 +19,19 @@ module.exports = function (ary, src1, key1, src2, key2) {
     if (key2 && el[key2] && el[key2].length > max) max = el[key2].length
   })
 
-  var maximize = function (val) {
+  const maximize = function (val) {
     if (!val || val.length === max) return val
     return val + Array(max - val.length).join(bufChar)
   }
 
-  var maxDist = function (a, b, c) {
-    var aLen = (a || '').length
-    var bLen = (b || '').length
+  const maxDist = function (a, b, c) {
+    const aLen = (a || '').length
+    const bLen = (b || '').length
 
     return (aLen > bLen ? aLen : bLen) || 1
   }
 
-  var leven = function (a, b) {
+  const leven = function (a, b) {
     if (a === b) return 0
 
     b = maximize(b)
@@ -41,7 +41,7 @@ module.exports = function (ary, src1, key1, src2, key2) {
     return levenSrc(a, b)
   }
 
-  var levSort = function (src, a, b) {
+  const levSort = function (src, a, b) {
     if (!a) return 1
     if (!b) return -1
 
@@ -51,15 +51,15 @@ module.exports = function (ary, src1, key1, src2, key2) {
     return a - b
   }
 
-  var levMinInAry = function (array, src) {
-    var min = 1000
-    var len = array.length
+  const levMinInAry = function (array, src) {
+    let min = 1000
+    const len = array.length
 
-    for (var counter = 0; counter < len; counter++) {
-      var val = array[counter]
+    for (let counter = 0; counter < len; counter++) {
+      const val = array[counter]
 
       if (val && val.length && val.length > 0) {
-        var levScore = leven(src, array[counter])
+        const levScore = leven(src, array[counter])
         if (levScore < min) min = levScore
       }
     }
@@ -67,10 +67,10 @@ module.exports = function (ary, src1, key1, src2, key2) {
     return min
   }
 
-  var sorted = ary.sort(function (a, b) {
+  const sorted = ary.sort(function (a, b) {
     if (key1 instanceof Array) {
-      var aLev = levMinInAry(key1.map(function (k) { return a[k] }), src1)
-      var bLev = levMinInAry(key1.map(function (k) { return b[k] }), src1)
+      const aLev = levMinInAry(key1.map(function (k) { return a[k] }), src1)
+      const bLev = levMinInAry(key1.map(function (k) { return b[k] }), src1)
 
       return aLev - bLev
     }
@@ -79,7 +79,7 @@ module.exports = function (ary, src1, key1, src2, key2) {
 
     if (!key2) return levSort(src1, a[key1], b[key1])
 
-    var score = levSort(src1, a[key1], b[key1]) * 10
+    const score = levSort(src1, a[key1], b[key1]) * 10
 
     return score + levSort(src2, a[key2], b[key2])
   })
